@@ -1,6 +1,8 @@
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
+
+SET( target_name HelloWorld )
  
-PROJECT(HelloWorld)
+PROJECT( ${target_name} )
 
 # High level project configuration
 
@@ -19,7 +21,7 @@ ENDIF()
 
 ## OpenStudio
 
-SET( OPENSTUDIO_BUILD_DIR "" CACHE STRING "Build or install directory for OpenStudio build to link against")
+SET( OPENSTUDIO_BUILD_DIR "" CACHE PATH "Build or install directory for OpenStudio build to link against")
 
 INCLUDE ( "${OPENSTUDIO_BUILD_DIR}/OpenStudioCore-prefix/src/OpenStudioCore-build/OpenStudioCoreConfig.cmake" )
 
@@ -103,6 +105,12 @@ LIST( APPEND QT_LIBS ${QT_QTNETWORK_LIB_DEPENDENCIES})
 LIST( APPEND QT_LIBS ${QT_QTXML_LIBRARY})
 LIST( APPEND QT_LIBS ${QT_QTXML_LIB_DEPENDENCIES})
 
+# Dependencies
+SET( ${target_name}_depends
+  openstudio_utilities
+  ${QT_LIBS}
+)
+
 # HelloWorld
 
 SET( HELLOWORLD_SRC
@@ -127,7 +135,6 @@ ADD_EXECUTABLE( HelloWorld
 )
 
 TARGET_LINK_LIBRARIES( HelloWorld
-  openstudio_utilities
-  ${QT_LIBS}
+  ${${target_name}_depends}
 )
 
