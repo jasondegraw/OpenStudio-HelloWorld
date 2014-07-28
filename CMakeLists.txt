@@ -66,6 +66,29 @@ find_package(Qt5WebKitWidgets) #Qt5Core, Qt5Gui, Qt5Multimedia, Qt5MultimediaWid
 #find_package(Qt5WinExtras) #Qt5Core, Qt5Gui, Qt5WinExtras
 find_package(Qt5Concurrent) #Qt5Core, Qt5Concurrent
 
+mark_as_advanced(
+  Qt5Concurrent_DIR
+  Qt5Core_DIR
+  Qt5Gui_DIR
+  Qt5Gui_EGL_LIBRARY
+  Qt5Location_DIR
+  Qt5Multimedia_DIR
+  Qt5MultimediaWidgets_DIR
+  Qt5Network_DIR
+  Qt5OpenGL_DIR
+  Qt5Positioning_DIR
+  Qt5PrintSupport_DIR
+  Qt5Qml_DIR
+  Qt5Quick_DIR
+  Qt5Sensors_DIR
+  Qt5Sql_DIR
+  Qt5WebKit_DIR
+  Qt5WebKitWidgets_DIR
+  Qt5Widgets_DIR
+  #Qt5WinExtras_DIR
+  Qt5Xml_DIR
+)
+
 # Tell CMake to run moc when necessary:
 set(CMAKE_AUTOMOC ON)
 # As moc files are generated in the binary dir, tell CMake to always look for includes there:
