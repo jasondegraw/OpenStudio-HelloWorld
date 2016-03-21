@@ -23,7 +23,7 @@ ENDIF()
 
 SET( OPENSTUDIO_BUILD_DIR "" CACHE PATH "Build or install directory for OpenStudio build to link against")
 
-INCLUDE ( "${OPENSTUDIO_BUILD_DIR}/OpenStudioCore-prefix/src/OpenStudioCore-build/OpenStudioCoreConfig.cmake" )
+INCLUDE ( "${OPENSTUDIO_BUILD_DIR}/OSCore-prefix/src/OSCore-build/OpenStudioCoreConfig.cmake" )
 
 IF(MSVC)
   file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/Products/Debug")
@@ -31,9 +31,9 @@ IF(MSVC)
   file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/Products/RelWithDebInfo")
   LIST( APPEND CMAKE_LIBRARY_PATH ${OPENSTUDIO_LIB_DIR} )
 
-  file(GLOB DEBUG_DLLS "${OPENSTUDIO_BUILD_DIR}/OpenStudioCore-prefix/src/OpenStudioCore-build/Products/Debug/*.dll")
-  file(GLOB RELEASE_DLLS "${OPENSTUDIO_BUILD_DIR}/OpenStudioCore-prefix/src/OpenStudioCore-build/Products/Release/*.dll")
-  file(GLOB RELDBG_DLLS "${OPENSTUDIO_BUILD_DIR}/OpenStudioCore-prefix/src/OpenStudioCore-build/Products/RelWithDebInfo/*.dll")
+  file(GLOB DEBUG_DLLS "${OPENSTUDIO_BUILD_DIR}/OSCore-prefix/src/OSCore-build/Products/Debug/*.dll")
+  file(GLOB RELEASE_DLLS "${OPENSTUDIO_BUILD_DIR}/OSCore-prefix/src/OSCore-build/Products/Release/*.dll")
+  file(GLOB RELDBG_DLLS "${OPENSTUDIO_BUILD_DIR}/OSCore-prefix/src/OSCore-build/Products/RelWithDebInfo/*.dll")
 
   file(COPY ${DEBUG_DLLS} DESTINATION "${CMAKE_BINARY_DIR}/Products/Debug/")
   file(COPY ${RELEASE_DLLS} DESTINATION "${CMAKE_BINARY_DIR}/Products/Release/")
@@ -61,10 +61,13 @@ find_package(Qt5Widgets) #Qt5Core, Qt5Gui, Qt5Widgets
 find_package(Qt5Sql) #Qt5Core, Qt5Sql
 find_package(Qt5Network) #Qt5Core, Qt5Network
 find_package(Qt5Xml) #Qt5Core, Qt5Xml
-find_package(Qt5WebKit) #Qt5Core, Qt5Gui, Qt5Network, Qt5WebKit
-find_package(Qt5WebKitWidgets) #Qt5Core, Qt5Gui, Qt5Multimedia, Qt5MultimediaWidgets, Qt5Network, Qt5OpenGL, Qt5Positioning, Qt5PrintSupport, Qt5Qml, Qt5Quick, Qt5Sensors, Qt5WebKit, Qt5WebKitWidgets, Qt5Widgets
+#find_package(Qt5WebKit) #Qt5Core, Qt5Gui, Qt5Network, Qt5WebKit
+#find_package(Qt5WebKitWidgets) #Qt5Core, Qt5Gui, Qt5Multimedia, Qt5MultimediaWidgets, Qt5Network, Qt5OpenGL, Qt5Positioning, Qt5PrintSupport, Qt5Qml, Qt5Quick, Qt5Sensors, Qt5WebKit, Qt5WebKitWidgets, Qt5Widgets
 #find_package(Qt5WinExtras) #Qt5Core, Qt5Gui, Qt5WinExtras
 find_package(Qt5Concurrent) #Qt5Core, Qt5Concurrent
+find_package(Qt5PrintSupport)  #Qt5Core, Qt5Gui, Qt5PrintSupport, Qt5Widgets
+find_package(Qt5WebEngine) #Qt5Core, Qt5Gui, Qt5Network, Qt5Qml, Qt5Quick, Qt5WebEngine
+find_package(Qt5WebEngineWidgets) #Qt5Core, Qt5Gui, Qt5Network, Qt5Qml, Qt5Quick, Qt5WebEngine, Qt5WebEngineWidgets, Qt5Widgets
 
 mark_as_advanced(
   Qt5Concurrent_DIR
@@ -82,8 +85,8 @@ mark_as_advanced(
   Qt5Quick_DIR
   Qt5Sensors_DIR
   Qt5Sql_DIR
-  Qt5WebKit_DIR
-  Qt5WebKitWidgets_DIR
+  Qt5WebEngine_DIR
+  Qt5WebEngineWidgets_DIR
   Qt5Widgets_DIR
   #Qt5WinExtras_DIR
   Qt5Xml_DIR
